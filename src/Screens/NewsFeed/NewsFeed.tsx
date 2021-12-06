@@ -1,9 +1,11 @@
 import React from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
+
 import { ArticleCard } from '../../Components'
 import { getNews } from '../../Services/Apis'
 import { useFetch } from '../../Hooks'
 import { NewsDataType, ArticleType } from '../../Services/types'
+
 import styles from './NewsFeed.styles'
 import { testIds } from './NewsFeed.testIds'
 

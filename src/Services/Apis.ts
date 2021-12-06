@@ -1,4 +1,5 @@
 import axios from 'axios'
+
 import { APIKEY, BASEURL } from './config'
 import { NewsDataType } from './types'
 

@@ -8,8 +8,8 @@ export default function useFetch<T>(endPoint: () => Promise<T>) {
   const get = async () => {
     setIsLoading(true)
     try {
-      const data: T = await endPoint()
-      data && setData(data)
+      const response: T = await endPoint()
+      response && setData(response)
     } catch (error) {
       setIsError(true)
     }
