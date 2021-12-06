@@ -1,2 +1,3 @@
-import './__mocks__/index';
-jest.useFakeTimers();
+import './__mocks__/index'
+
+jest.useFakeTimers()
