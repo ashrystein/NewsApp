@@ -8,7 +8,7 @@ type ArticleCardProps = {
   uri: string
 }
 
-const ArticleCard = ({ title, uri }: ArticleCardProps) => (
+const ArticleCard: React.FC<ArticleCardProps> = ({ title, uri }) => (
   <View style={styles.container} testID={testIds.ArticleCard_Wrapper}>
     <View style={styles.headingView} testID={testIds.ArticleCard_Heading_View}>
       <Text

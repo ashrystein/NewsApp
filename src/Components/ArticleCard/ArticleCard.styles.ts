@@ -4,7 +4,8 @@ const { height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
-    height: height * 0.4
+    height: height * 0.4,
+    marginVertical: 5
   },
   headingView: {
     padding: 10

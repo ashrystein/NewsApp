@@ -1,4 +1,4 @@
-export type Article = {
+export type ArticleType = {
   source: {
     id: string
     name: string
@@ -12,8 +12,8 @@ export type Article = {
   content: string
 }
 
-export type NewsData = {
+export type NewsDataType = {
   status: string
   totalResults: number
-  articles: Article[]
+  articles: ArticleType[]
 }
