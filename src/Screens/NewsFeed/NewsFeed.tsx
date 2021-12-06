@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
 import { ArticleCard } from '../../Components'
@@ -29,11 +29,11 @@ const NewsFeed = () => {
     index: number
   }) => (
     <ArticleCard
-      uri={item.urlToImage}
-      title={item.title}
+      article={item}
       testID={`${testIds.NewsFeed_List_Item}${index}`}
     />
   )
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
@@ -44,6 +44,8 @@ const NewsFeed = () => {
         testID={testIds.NewsFeed_List_Wrapper}
         refreshing={isLoading}
         onRefresh={getArticles}
+        removeClippedSubviews={true}
+        initialNumToRender={10}
       />
     </SafeAreaView>
   )
