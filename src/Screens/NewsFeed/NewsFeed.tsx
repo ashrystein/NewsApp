@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
 import { ArticleCard } from '../../Components'
@@ -10,8 +10,16 @@ import styles from './NewsFeed.styles'
 import { testIds } from './NewsFeed.testIds'
 
 const NewsFeed = () => {
-  const { isLoading, isError, data } = useFetch<NewsDataType>(getNews)
-  console.log(isLoading, isError, data)
+  const {
+    isLoading,
+    isError,
+    data,
+    get: getArticles
+  } = useFetch<NewsDataType>(getNews)
+
+  useEffect(() => {
+    getArticles()
+  }, [])
 
   const renderItem = ({
     item,
@@ -34,6 +42,8 @@ const NewsFeed = () => {
         keyExtractor={(item) => item?.title}
         showsVerticalScrollIndicator={false}
         testID={testIds.NewsFeed_List_Wrapper}
+        refreshing={isLoading}
+        onRefresh={getArticles}
       />
     </SafeAreaView>
   )

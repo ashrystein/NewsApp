@@ -16,9 +16,5 @@ export default function useFetch<T>(endPoint: () => Promise<T>) {
     setIsLoading(false)
   }
 
-  useEffect(() => {
-    get()
-  }, [endPoint])
-
-  return { isLoading, isError, data }
+  return { isLoading, isError, data, get }
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, Pressable } from 'react-native'
 
 import styles from './ArticleCard.styles'
 import { testIds } from './ArticleCard.testIds'
@@ -11,7 +11,7 @@ type ArticleCardProps = {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ title, uri, testID }) => (
-  <View style={styles.container} testID={testID}>
+  <Pressable style={styles.container} testID={testID}>
     <View style={styles.headingView} testID={testIds.ArticleCard_Heading_View}>
       <Text
         style={styles.headingText}
@@ -28,7 +28,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ title, uri, testID }) => (
         testID={testIds.ArticleCard_Image}
       />
     </View>
-  </View>
+  </Pressable>
 )
 
 export default ArticleCard
