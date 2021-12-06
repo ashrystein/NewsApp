@@ -6,5 +6,6 @@ module.exports = {
     '/node_modules/',
     '<rootDir>/__tests__/setup.js',
     '<rootDir>/__tests__/__mocks__'
-  ]
+  ],
+  setupFilesAfterEnv: ['<rootDir>/__Tests__/Setup']
 }
