@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 import { NewsFeed, ArticleDetails } from '../Screens'
+import { translate } from '../i18n/helpers'
 
 import routes from './Routes'
 
@@ -15,14 +16,14 @@ const RootStack = () => (
       name={routes.NewsFeed}
       component={NewsFeed}
       options={{
-        title: 'News Feed'
+        title: translate('News_Feed')
       }}
     />
     <Stack.Screen
       name={routes.ArticleDetails}
       component={ArticleDetails}
       options={{
-        title: 'Details'
+        title: translate('Details')
       }}
     />
   </Stack.Navigator>

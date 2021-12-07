@@ -10,4 +10,6 @@ I18n.translations = {
   bg
 }
 
+// I18n.locale = 'bg'
+
 export default I18n
