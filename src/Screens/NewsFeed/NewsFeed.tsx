@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
-import { ArticleCard } from '../../Components'
+import { ArticleCard, Search } from '../../Components'
 import { getNews } from '../../Services/Apis'
 import { useFetch } from '../../Hooks'
 import { NewsDataType, ArticleType } from '../../Services/types'
@@ -10,11 +10,20 @@ import styles from './NewsFeed.styles'
 import { testIds } from './NewsFeed.testIds'
 
 const NewsFeed = () => {
+  const [articles, setArticles] = useState<ArticleType[]>([])
+  const [searchArticles, setSearchArticles] = useState<ArticleType[]>([])
   const { isLoading, data, get: getArticles } = useFetch<NewsDataType>(getNews)
 
   useEffect(() => {
     getArticles()
   }, [])
+
+  useEffect(() => {
+    if (data) {
+      setArticles(data.articles)
+      setSearchArticles(data.articles)
+    }
+  }, [data])
 
   const renderItem = ({
     item,
@@ -31,8 +40,9 @@ const NewsFeed = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Search data={articles} setData={setSearchArticles} />
       <FlatList
-        data={data?.articles}
+        data={searchArticles}
         renderItem={renderItem}
         keyExtractor={(item) => item?.title}
         showsVerticalScrollIndicator={false}
