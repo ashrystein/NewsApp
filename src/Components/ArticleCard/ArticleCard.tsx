@@ -1,11 +1,13 @@
 import React, { memo } from 'react'
 import { Text, View, Image, Pressable } from 'react-native'
 
-import styles from './ArticleCard.styles'
-import { testIds } from './ArticleCard.testIds'
 import { useNavigation } from '@react-navigation/native'
+
 import routes from '../../Navigation/Routes'
 import { ArticleType } from '../../Services/types'
+
+import { testIds } from './ArticleCard.testIds'
+import styles from './ArticleCard.styles'
 
 type ArticleCardProps = {
   article: ArticleType
@@ -20,14 +22,11 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
   }
 
   return (
-    <Pressable
-      style={styles.container}
-      testID={testID}
-      onPress={handleOnArticlePress}
-    >
-      <View
+    <View style={styles.container} testID={testID}>
+      <Pressable
         style={styles.headingView}
         testID={testIds.ArticleCard_Heading_View}
+        onPress={handleOnArticlePress}
       >
         <Text
           style={styles.headingText}
@@ -36,7 +35,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
         >
           {article.title}
         </Text>
-      </View>
+      </Pressable>
       <View style={styles.imageView} testID={testIds.ArticleCard_Image_View}>
         <Image
           source={{ uri: article.urlToImage }}
@@ -44,7 +43,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
           testID={testIds.ArticleCard_Image}
         />
       </View>
-    </Pressable>
+    </View>
   )
 }
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react'
+import React, { useEffect } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
 import { ArticleCard } from '../../Components'
@@ -10,12 +10,7 @@ import styles from './NewsFeed.styles'
 import { testIds } from './NewsFeed.testIds'
 
 const NewsFeed = () => {
-  const {
-    isLoading,
-    isError,
-    data,
-    get: getArticles
-  } = useFetch<NewsDataType>(getNews)
+  const { isLoading, data, get: getArticles } = useFetch<NewsDataType>(getNews)
 
   useEffect(() => {
     getArticles()
