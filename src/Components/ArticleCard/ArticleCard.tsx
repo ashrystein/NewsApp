@@ -18,7 +18,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
   const { navigate } = useNavigation()
 
   const handleOnArticlePress = () => {
-    navigate(routes.ArticleDetails)
+    navigate(routes.ArticleDetails, { article })
   }
 
   return (
