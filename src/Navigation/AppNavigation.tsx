@@ -82,10 +82,6 @@ const MainTabNavigator = () => (
 const AppNavigation = () => {
   const forceUpdate = useForceUpdate()
 
-  useEffect(() => {
-    forceUpdate()
-  }, [])
-
   return (
     <Provider store={store}>
       <NavigationScreen onChangeLanguage={forceUpdate}>

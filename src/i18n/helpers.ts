@@ -5,9 +5,9 @@ const translate = (i18nKey: string) =>
 
 const getCurrentLanguage = () => I18n.locale
 
-const changeLanguage = () => {
+const changeLanguage = (lang?: string) => {
   const currentLanguage = I18n.locale
-  I18n.locale = currentLanguage === 'en' ? 'br' : 'en'
+  I18n.locale = lang ?? currentLanguage === 'en' ? 'bg' : 'en'
 }
 
 export { translate, changeLanguage, getCurrentLanguage }

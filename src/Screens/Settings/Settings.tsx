@@ -17,22 +17,28 @@ const Settings = () => {
   )
   const isEn = language === 'en'
 
-  const onChangeLanguage = () => {
+  const onChangeLanguage = (lang: string) => {
     changeLanguage()
-    dispatch(settingsActions.changeLanguage(language === 'en' ? 'br' : 'en'))
+    dispatch(settingsActions.changeLanguage(lang))
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.langView}>
-        <Pressable style={styles.langItemView} onPress={onChangeLanguage}>
+        <Pressable
+          style={styles.langItemView}
+          onPress={() => onChangeLanguage('en')}
+        >
           <View style={styles.langNameItem}>
             <Icon5 name="language" size={30} color={'green'} /* theme */ />
             <LocalizedText i18nKey="English" style={styles.langItemText} />
           </View>
           {isEn && <Icon5 name="check" size={15} color={'green'} /* theme */ />}
         </Pressable>
-        <Pressable style={styles.langItemView} onPress={onChangeLanguage}>
+        <Pressable
+          style={styles.langItemView}
+          onPress={() => onChangeLanguage('bg')}
+        >
           <View style={styles.langNameItem}>
             <Icon5 name="language" size={30} color={'green'} /* theme */ />
             <LocalizedText i18nKey="Bulgarian" style={styles.langItemText} />

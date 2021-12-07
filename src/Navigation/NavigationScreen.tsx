@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react'
-
 import { useSelector } from 'react-redux'
 
 type NavigationScreenProps = {
   children: React.ReactNode
-  onChangeLanguage: Function
+  onChangeLanguage: () => void
 }
 
 const NavigationScreen: React.FC<NavigationScreenProps> = ({
