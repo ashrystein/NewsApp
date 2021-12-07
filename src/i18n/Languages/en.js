@@ -3,7 +3,9 @@ const en = {
   Details: 'Details',
   Search: 'Search',
   News: 'News',
-  Settings: 'Settings'
+  Settings: 'Settings',
+  English: 'English',
+  Bulgarian: 'Bulgarian'
 }
 
 export default en

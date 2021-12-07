@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5'
+import { Provider } from 'react-redux'
 
+import { useForceUpdate } from '../Hooks'
 import { NewsFeed, ArticleDetails, Settings } from '../Screens'
 import { translate } from '../i18n/helpers'
+import store from '../Redux/Store'
 
 import routes from './Routes'
+import NavigationScreen from './NavigationScreen'
 
 const Stack = createNativeStackNavigator()
 const BottomTab = createBottomTabNavigator()
@@ -53,7 +57,7 @@ const MainTabNavigator = () => (
     }}
   >
     <BottomTab.Screen
-      name={routes.NewsFeed}
+      name={routes.NewsFeedTab}
       component={NewsStackNavigator}
       options={{
         title: translate('News'),
@@ -63,7 +67,7 @@ const MainTabNavigator = () => (
       }}
     />
     <BottomTab.Screen
-      name={routes.Settings}
+      name={routes.SettingsTab}
       component={SettingsStackNavigator}
       options={{
         title: translate('Settings'),
@@ -76,10 +80,20 @@ const MainTabNavigator = () => (
 )
 
 const AppNavigation = () => {
+  const forceUpdate = useForceUpdate()
+
+  useEffect(() => {
+    forceUpdate()
+  }, [])
+
   return (
-    <NavigationContainer>
-      <MainTabNavigator />
-    </NavigationContainer>
+    <Provider store={store}>
+      <NavigationScreen onChangeLanguage={forceUpdate}>
+        <NavigationContainer>
+          <MainTabNavigator />
+        </NavigationContainer>
+      </NavigationScreen>
+    </Provider>
   )
 }
 

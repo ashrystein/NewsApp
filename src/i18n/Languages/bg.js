@@ -1,7 +1,11 @@
 const bg = {
   News_Feed: 'Новини',
   Details: 'Подробности',
-  Search: 'Търсене'
+  Search: 'Търсене',
+  News: 'Новини',
+  Settings: 'Настройки',
+  English: 'Английски',
+  Bulgarian: 'български'
 }
 
 export default bg
