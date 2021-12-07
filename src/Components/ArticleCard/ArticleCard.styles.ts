@@ -8,7 +8,8 @@ const styles = StyleSheet.create({
     marginVertical: 5
   },
   headingView: {
-    padding: 10
+    padding: 10,
+    paddingLeft: 0
   },
   imageView: {
     flex: 1
