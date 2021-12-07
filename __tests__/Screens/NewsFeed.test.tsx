@@ -4,21 +4,7 @@ import { render, act, fireEvent } from '@testing-library/react-native'
 
 import { NewsFeed } from '../../src/Screens'
 import { testIds } from '../../src/Screens/NewsFeed/NewsFeed.testIds'
-
-const article = {
-  source: {
-    id: '',
-    name: ''
-  },
-  author: '',
-  title: 'title1',
-  description: '',
-  url: '',
-  urlToImage:
-    'https://s.yimg.com/os/creatr-uploaded-images/2021-12/6f5ec8f0-55e4-11ec-ad4d-0378eb0e51e1',
-  publishedAt: '',
-  content: ''
-}
+import { article } from '../stubs'
 
 jest.mock('../../src/Services/Apis', () => {
   return {

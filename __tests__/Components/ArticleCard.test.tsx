@@ -4,22 +4,10 @@ import { render } from '@testing-library/react-native'
 
 import { ArticleCard } from '../../src/Components'
 import { testIds } from '../../src/Components/ArticleCard/ArticleCard.testIds'
+import { article } from '../stubs'
 
 const props = {
-  article: {
-    source: {
-      id: '',
-      name: ''
-    },
-    author: '',
-    title: 'article title',
-    description: '',
-    url: '',
-    urlToImage:
-      'https://s.yimg.com/os/creatr-uploaded-images/2021-12/6f5ec8f0-55e4-11ec-ad4d-0378eb0e51e1',
-    publishedAt: '',
-    content: ''
-  },
+  article,
   testID: 'article0'
 }
 describe('ArticleCard Component', () => {
