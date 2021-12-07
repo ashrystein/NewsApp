@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { render } from '@testing-library/react-native'
+import { render, act, fireEvent } from '@testing-library/react-native'
 
 import { NewsFeed } from '../../src/Screens'
 import { testIds } from '../../src/Screens/NewsFeed/NewsFeed.testIds'
@@ -11,7 +11,7 @@ const article = {
     name: ''
   },
   author: '',
-  title: 'article title',
+  title: 'title1',
   description: '',
   url: '',
   urlToImage:
@@ -25,7 +25,11 @@ jest.mock('../../src/Services/Apis', () => {
     getNews: jest.fn(() => ({
       status: 'ok',
       totalResults: 12,
-      articles: [article, article, article]
+      articles: [
+        article,
+        { ...article, title: 'title2' },
+        { ...article, title: 'title3' }
+      ]
     }))
   }
 })
@@ -43,6 +47,19 @@ describe('NewsFeed Screen', () => {
         expect(getByTestId(`${testIds.NewsFeed_List_Item}${0}`)).toBeTruthy()
         expect(getByTestId(`${testIds.NewsFeed_List_Item}${1}`)).toBeTruthy()
         expect(getByTestId(`${testIds.NewsFeed_List_Item}${2}`)).toBeTruthy()
+        resolve(1)
+      }, 1000)
+    })
+  })
+
+  it('should render filterd articles only', async () => {
+    const { getByTestId, queryByText } = render(<NewsFeed />)
+    return new Promise((resolve) => {
+      setTimeout(async () => {
+        const searchInput = getByTestId('Search_Input')
+        await act(() => fireEvent.changeText(searchInput, 'title1'))
+        expect(queryByText('title1')).not.toBeNull()
+        expect(queryByText('title3')).toBeNull()
         resolve(1)
       }, 1000)
     })
