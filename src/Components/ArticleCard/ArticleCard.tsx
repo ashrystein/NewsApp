@@ -1,13 +1,13 @@
 import React, { memo } from 'react'
 import { Text, View, Image, Pressable } from 'react-native'
-
 import { useNavigation } from '@react-navigation/native'
 
 import routes from '../../Navigation/Routes'
 import { ArticleType } from '../../Services/types'
+import { useStyleSheet } from '../../Hooks'
 
 import { testIds } from './ArticleCard.testIds'
-import styles from './ArticleCard.styles'
+import Styles from './ArticleCard.styles'
 
 type ArticleCardProps = {
   article: ArticleType
@@ -16,6 +16,7 @@ type ArticleCardProps = {
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
   const { navigate } = useNavigation()
+  const styles = useStyleSheet(Styles)
 
   const handleOnArticlePress = () => {
     //@ts-ignore

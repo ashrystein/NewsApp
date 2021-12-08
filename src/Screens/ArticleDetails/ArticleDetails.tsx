@@ -2,8 +2,9 @@ import React from 'react'
 import { View, Image, Text, ScrollView, SafeAreaView } from 'react-native'
 
 import { ArticleType } from '../../Services/types'
+import { useStyleSheet } from '../../Hooks'
 
-import styles from './ArticleDetails.styles'
+import Styles from './ArticleDetails.styles'
 import { testIds } from './ArticleDetails.testIds'
 
 type RouteParamList = {
@@ -15,6 +16,7 @@ type RouteParamList = {
 }
 
 const ArticleDetails: React.FC<RouteParamList> = ({ route }) => {
+  const styles = useStyleSheet(Styles)
   const {
     params: { article }
   } = route

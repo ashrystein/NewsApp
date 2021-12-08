@@ -15,7 +15,7 @@ import store from '../Redux/Store'
 
 import routes from './Routes'
 import NavigationScreen from './NavigationScreen'
-import { LightTheme, DarkTheme } from '../Themes'
+import { LightTheme, DarkTheme, Colors } from '../Themes'
 
 const Stack = createNativeStackNavigator()
 const BottomTab = createBottomTabNavigator()
@@ -55,8 +55,8 @@ const MainTabNavigator = () => (
   <BottomTab.Navigator
     screenOptions={{
       headerShown: false,
-      tabBarActiveTintColor: 'red', // theme
-      tabBarInactiveTintColor: 'gray' //theme
+      tabBarActiveTintColor: Colors.frenchBlue,
+      tabBarInactiveTintColor: Colors.lightGrey
     }}
   >
     <BottomTab.Screen
