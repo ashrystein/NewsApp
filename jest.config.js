@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/__tests__/setup.js',
     '<rootDir>/__tests__/__mocks__'
   ],
-  setupFilesAfterEnv: ['<rootDir>/__Tests__/Setup']
+  setupFilesAfterEnv: ['<rootDir>/__Tests__/Setup'],
+  transformIgnorePatterns: ['node_modules/(?!(jest-)?react-native|)']
 }
