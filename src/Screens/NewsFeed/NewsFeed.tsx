@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
+import { useTheme } from '@react-navigation/native'
+
 import { ArticleCard, Search, LoadingIndicator } from '../../Components'
 import { getNews } from '../../Services/Apis'
 import { useFetch } from '../../Hooks'
@@ -13,6 +15,8 @@ const NewsFeed = () => {
   const [articles, setArticles] = useState<ArticleType[]>([])
   const [searchArticles, setSearchArticles] = useState<ArticleType[]>([])
   const { isLoading, data, get: getArticles } = useFetch<NewsDataType>(getNews)
+  const { colors } = useTheme()
+  console.log('colors:   ', colors)
 
   useEffect(() => {
     getArticles()
@@ -52,7 +56,7 @@ const NewsFeed = () => {
         removeClippedSubviews={true}
         initialNumToRender={10}
       />
-      <LoadingIndicator disabled={!isLoading || articles.length} />
+      <LoadingIndicator disabled={!isLoading || !!articles.length} />
     </SafeAreaView>
   )
 }

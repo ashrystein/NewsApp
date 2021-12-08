@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
+import { useColorScheme } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+//@ts-ignore
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5'
 import { Provider } from 'react-redux'
 
@@ -13,6 +15,7 @@ import store from '../Redux/Store'
 
 import routes from './Routes'
 import NavigationScreen from './NavigationScreen'
+import { LightTheme, DarkTheme } from '../Themes'
 
 const Stack = createNativeStackNavigator()
 const BottomTab = createBottomTabNavigator()
@@ -81,11 +84,12 @@ const MainTabNavigator = () => (
 
 const AppNavigation = () => {
   const forceUpdate = useForceUpdate()
+  const scheme = useColorScheme()
 
   return (
     <Provider store={store}>
       <NavigationScreen onChangeLanguage={forceUpdate}>
-        <NavigationContainer>
+        <NavigationContainer theme={scheme === 'dark' ? DarkTheme : LightTheme}>
           <MainTabNavigator />
         </NavigationContainer>
       </NavigationScreen>
