@@ -21,7 +21,7 @@ const Settings = () => {
   const isEn = language === 'en'
 
   const onChangeLanguage = (lang: string) => {
-    changeLanguage()
+    changeLanguage(lang)
     dispatch(settingsActions.changeLanguage(lang))
   }
 
