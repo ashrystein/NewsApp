@@ -6,16 +6,14 @@ import { Colors } from '../../Themes'
 const styles = StyleSheet.create<any>({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
     borderRadius: 9999,
     borderWidth: 0.5,
     marginBottom: 10,
-    paddingVertical: 10,
     backgroundColor: Colors.white,
     borderColor: Colors.lightGrey
   },
   searchInput: {
-    flex: 1,
+    paddingVertical: 10,
     borderRadius: 20,
     color: Colors.black,
     fontSize: Fonts.medium,

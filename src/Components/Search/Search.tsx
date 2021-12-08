@@ -9,6 +9,7 @@ import { View, TextInput } from 'react-native'
 
 import { ArticleType } from '../../Services/types'
 import { translate } from '../../i18n/helpers'
+import { Colors } from '../../Themes'
 
 import { testIds } from './Search.testIds'
 import styles from './Search.styles'
@@ -37,7 +38,7 @@ const Search = <T extends ArticleType>({ data, setData }: SearchProps<T>) => {
       <TextInput
         style={styles.searchInput}
         placeholder={translate('Search')}
-        placeholderTextColor={'gray'} //theme
+        placeholderTextColor={Colors.lightGrey}
         value={keyword}
         onChangeText={onChange}
         testID={testIds.Search_Input}
