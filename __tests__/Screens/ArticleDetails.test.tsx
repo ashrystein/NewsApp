@@ -9,7 +9,7 @@ import { article } from '../stubs'
 const props = {
   route: {
     params: {
-      article
+      ...article
     }
   }
 }
@@ -25,12 +25,12 @@ describe('ArticleDetails Screen', () => {
 
   it('should render articles title and description', async () => {
     const { queryByText } = render(<ArticleDetails {...props} />)
-    expect(queryByText(props.route.params.article.title)).not.toBeNull()
-    expect(queryByText(props.route.params.article.description)).not.toBeNull()
+    expect(queryByText(props.route.params.title)).not.toBeNull()
+    expect(queryByText(props.route.params.description)).not.toBeNull()
   })
   it('should render articles author and publish date', async () => {
     const { queryByText } = render(<ArticleDetails {...props} />)
-    expect(queryByText(props.route.params.article.author)).not.toBeNull()
-    expect(queryByText(props.route.params.article.publishedAt)).not.toBeNull()
+    expect(queryByText(props.route.params.author)).not.toBeNull()
+    expect(queryByText(props.route.params.publishedAt)).not.toBeNull()
   })
 })
