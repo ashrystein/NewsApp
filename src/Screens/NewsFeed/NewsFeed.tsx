@@ -11,18 +11,34 @@ import { testIds } from './NewsFeed.testIds'
 
 const NewsFeed = () => {
   const [articles, setArticles] = useState<ArticleType[]>([])
+  const [page, setPage] = useState<number>(1)
   const [searchArticles, setSearchArticles] = useState<ArticleType[]>([])
   const { isLoading, data, get: getArticles } = useFetch<NewsDataType>(getNews)
   const styles = useStyleSheet(Styles)
 
+  const handleGetArticles = (nextPage: number = 1) => {
+    getArticles(nextPage)
+    setPage(nextPage)
+  }
+
+  const handleOnRefresh = () => {
+    setArticles([])
+    setSearchArticles([])
+    handleGetArticles(1)
+  }
+
   useEffect(() => {
-    getArticles()
+    handleGetArticles(page)
   }, [])
 
   useEffect(() => {
     if (data) {
-      setArticles(data.articles)
-      setSearchArticles(data.articles)
+      const concatinatedArticles: ArticleType[] = [
+        ...articles,
+        ...data.articles
+      ]
+      setArticles(concatinatedArticles)
+      setSearchArticles(concatinatedArticles)
     }
   }, [data])
 
@@ -49,9 +65,11 @@ const NewsFeed = () => {
         showsVerticalScrollIndicator={false}
         testID={testIds.NewsFeed_List_Wrapper}
         refreshing={isLoading}
-        onRefresh={getArticles}
+        onRefresh={handleOnRefresh}
         removeClippedSubviews={true}
         initialNumToRender={10}
+        onEndReachedThreshold={1}
+        onEndReached={() => handleGetArticles(page + 1)}
       />
       <LoadingIndicator disabled={!isLoading || !!articles.length} />
     </SafeAreaView>

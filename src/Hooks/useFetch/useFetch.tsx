@@ -1,14 +1,14 @@
 import { useState } from 'react'
 
-export default function useFetch<T>(endPoint: () => Promise<T>) {
+export default function useFetch<T>(endPoint: (page: number) => Promise<T>) {
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [isError, setIsError] = useState<boolean>(false)
   const [data, setData] = useState<T | null>(null)
 
-  const get = async () => {
+  const get = async (page: number) => {
     setIsLoading(true)
     try {
-      const response: T = await endPoint()
+      const response: T = await endPoint(page)
       response && setData(response)
     } catch (error) {
       setIsError(true)
