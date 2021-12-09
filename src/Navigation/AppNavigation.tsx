@@ -16,6 +16,7 @@ import store from '../Redux/Store'
 import routes from './Routes'
 import NavigationScreen from './NavigationScreen'
 import { LightTheme, DarkTheme, Colors } from '../Themes'
+import linking from './DeepLinking'
 
 const Stack = createNativeStackNavigator()
 const BottomTab = createBottomTabNavigator()
@@ -89,7 +90,10 @@ const AppNavigation = () => {
   return (
     <Provider store={store}>
       <NavigationScreen onChangeLanguage={forceUpdate}>
-        <NavigationContainer theme={scheme === 'dark' ? DarkTheme : LightTheme}>
+        <NavigationContainer
+          linking={linking}
+          theme={scheme === 'dark' ? DarkTheme : LightTheme}
+        >
           <MainTabNavigator />
         </NavigationContainer>
       </NavigationScreen>

@@ -1,7 +1,7 @@
 const article = {
   source: {
-    id: '',
-    name: ''
+    id: '1',
+    name: 'test'
   },
   author: 'author',
   title: 'title1',

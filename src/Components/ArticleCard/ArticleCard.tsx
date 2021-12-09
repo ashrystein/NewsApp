@@ -20,7 +20,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
 
   const handleOnArticlePress = () => {
     //@ts-ignore
-    navigate(routes.ArticleDetails, { article })
+    navigate(routes.ArticleDetails, { ...article })
   }
 
   return (
