@@ -145,7 +145,6 @@
 				426856FE8AA49D238FFC34A3 /* Pods-musalaTest-musalaTestTests.debug.xcconfig */,
 				5E313D8B26DF50393B658830 /* Pods-musalaTest-musalaTestTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
