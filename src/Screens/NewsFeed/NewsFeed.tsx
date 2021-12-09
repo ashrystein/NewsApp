@@ -9,6 +9,11 @@ import { NewsDataType, ArticleType } from '../../Services/types'
 import Styles from './NewsFeed.styles'
 import { testIds } from './NewsFeed.testIds'
 
+type ListItem = {
+  item: ArticleType
+  index: number
+}
+
 const NewsFeed = () => {
   const [articles, setArticles] = useState<ArticleType[]>([])
   const [page, setPage] = useState<number>(1)
@@ -42,13 +47,7 @@ const NewsFeed = () => {
     }
   }, [data])
 
-  const renderItem = ({
-    item,
-    index
-  }: {
-    item: ArticleType
-    index: number
-  }) => (
+  const renderItem = ({ item, index }: ListItem) => (
     <ArticleCard
       article={item}
       testID={`${testIds.NewsFeed_List_Item}${index}`}
