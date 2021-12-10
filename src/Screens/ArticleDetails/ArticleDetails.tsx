@@ -42,6 +42,7 @@ const ArticleDetails: React.FC<RouteParamList> = ({ route }) => {
           source={{ uri: urlToImage }}
           style={styles.poster}
           testID={testIds.ArticleDetails_Poster}
+          resizeMode="cover"
         />
         <Sectin testID={testIds.ArticleDetails_DescriptionView}>
           <BodySection title={title} description={description} />

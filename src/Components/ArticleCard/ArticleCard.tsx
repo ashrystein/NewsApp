@@ -44,6 +44,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
           source={{ uri: article.urlToImage }}
           style={styles.image}
           testID={testIds.ArticleCard_Image}
+          resizeMode="contain"
         />
       </View>
     </View>

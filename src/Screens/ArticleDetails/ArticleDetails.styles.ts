@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native'
 
 import { ThemeType } from '../../Themes/types'
 
-const { height } = Dimensions.get('window')
+const { width } = Dimensions.get('window')
 
 const styles = (theme: ThemeType) =>
   StyleSheet.create({
@@ -10,8 +10,8 @@ const styles = (theme: ThemeType) =>
       flex: 1
     },
     poster: {
-      height: height * 0.4,
-      resizeMode: 'cover'
+      height: width,
+      width: width
     },
     wrapperView: {
       margin: 10,

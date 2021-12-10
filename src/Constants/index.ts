@@ -1,4 +1,6 @@
 import Fonts from './Fonts'
 import { StatusBarModes } from './Styles'
 
-export { Fonts, StatusBarModes }
+const newsHeightRatio = 0.4
+
+export { Fonts, StatusBarModes, newsHeightRatio }

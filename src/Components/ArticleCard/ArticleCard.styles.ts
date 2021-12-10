@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
 
+import { newsHeightRatio } from '../../Constants'
 import { ThemeType } from '../../Themes/types'
 
 const { height } = Dimensions.get('window')
@@ -7,7 +8,7 @@ const { height } = Dimensions.get('window')
 const styles = (theme: ThemeType) =>
   StyleSheet.create({
     container: {
-      height: height * 0.4,
+      height: height * newsHeightRatio,
       marginVertical: 5,
       backgroundColor: theme.colors.secondaryBg,
       borderRadius: 5,
@@ -26,8 +27,7 @@ const styles = (theme: ThemeType) =>
     },
     image: {
       width: '100%',
-      height: '100%',
-      resizeMode: 'cover'
+      height: '100%'
     }
   })
 
