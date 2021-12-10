@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { View } from 'react-native'
-import { LocalizedText } from '../../Components'
 import { StackActions, useNavigation } from '@react-navigation/native'
+
+import { LocalizedText } from '../../Components'
 import { useStyleSheet } from '../../Hooks'
 import routes from '../../Navigation/Routes'
 
