@@ -7,11 +7,12 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 //@ts-ignore
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5'
 import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 
 import { useForceUpdate } from '../Hooks'
 import { NewsFeed, ArticleDetails, Settings } from '../Screens'
 import { translate } from '../i18n/helpers'
-import store from '../Redux/Store'
+import store, { _persistor } from '../Redux/Store'
 import { StatusBarModes } from '../Constants'
 
 import routes from './Routes'
@@ -91,15 +92,17 @@ const AppNavigation = () => {
 
   return (
     <Provider store={store}>
-      <NavigationScreen onChangeLanguage={forceUpdate}>
-        <StatusBar animated={true} barStyle={barStyle} />
-        <NavigationContainer
-          linking={linking}
-          theme={scheme === 'dark' ? DarkTheme : LightTheme}
-        >
-          <MainTabNavigator />
-        </NavigationContainer>
-      </NavigationScreen>
+      <PersistGate loading={null} persistor={_persistor}>
+        <NavigationScreen onChangeLanguage={forceUpdate}>
+          <StatusBar animated={true} barStyle={barStyle} />
+          <NavigationContainer
+            linking={linking}
+            theme={scheme === 'dark' ? DarkTheme : LightTheme}
+          >
+            <MainTabNavigator />
+          </NavigationContainer>
+        </NavigationScreen>
+      </PersistGate>
     </Provider>
   )
 }
