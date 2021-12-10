@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { SafeAreaView, FlatList } from 'react-native'
 
-import { ArticleCard, Search, LoadingIndicator } from '../../Components'
+import {
+  ArticleCard,
+  Search,
+  LoadingIndicator,
+  ErrorIndicator
+} from '../../Components'
 import { getNews } from '../../Services/Apis'
 import { useFetch, useStyleSheet } from '../../Hooks'
 import { NewsDataType, ArticleType } from '../../Services/types'
@@ -16,41 +21,65 @@ type ListItem = {
 
 const NewsFeed = () => {
   const [articles, setArticles] = useState<ArticleType[]>([])
-  const [page, setPage] = useState<number>(1)
+  const [pageNumber, setPagination] = useState<number>(1)
   const [isSearching, setIsSearching] = useState<boolean>(false)
-  const [searchArticles, setSearchArticles] = useState<ArticleType[]>([])
-  const { isLoading, data, get: getArticles } = useFetch<NewsDataType>(getNews)
+  const [isRefreshing, setIsRefreshing] = useState<boolean>(false)
+  const [CurrentViewArticles, setCurrentViewArticles] = useState<ArticleType[]>(
+    []
+  )
+  const {
+    isLoading,
+    isError,
+    data,
+    get: getArticles
+  } = useFetch<NewsDataType>(getNews)
   const styles = useStyleSheet(Styles)
 
-  const handleGetArticles = (nextPage: number = 1) => {
-    getArticles(nextPage)
-    setPage(nextPage)
+  const handleGetArticles = async (nextPage: number = 1) => {
+    if (isLoading) return
+    await getArticles(nextPage)
+    setPagination(nextPage)
   }
 
-  const handleOnRefresh = () => {
-    setArticles([])
-    setSearchArticles([])
-    handleGetArticles()
+  const handleOnRefresh = async () => {
+    setIsRefreshing(true)
+    setIsSearching(false)
+    await handleGetArticles()
+    setIsRefreshing(false)
   }
 
-  const onLoadMore = () => {
-    !isSearching && handleGetArticles(page + 1)
+  const onLoadMore = async () => {
+    !isSearching && (await handleGetArticles(pageNumber + 1))
   }
 
-  useEffect(() => {
-    handleGetArticles(page)
-  }, [])
-
-  useEffect(() => {
+  const handleNewDataLoaded = () => {
     if (data) {
+      const currentArticles = isRefreshing ? [] : articles
       const concatinatedArticles: ArticleType[] = [
-        ...articles,
+        ...currentArticles,
         ...data.articles
       ]
       setArticles(concatinatedArticles)
-      setSearchArticles(concatinatedArticles)
+      setCurrentViewArticles(concatinatedArticles)
     }
-  }, [data])
+  }
+
+  const handleOnError = () => {
+    setArticles([])
+    setCurrentViewArticles([])
+  }
+
+  useEffect(() => {
+    handleGetArticles()
+  }, [])
+
+  useEffect(() => {
+    if (isError) {
+      handleOnError()
+    } else {
+      handleNewDataLoaded()
+    }
+  }, [data, isError])
 
   const renderItem = ({ item, index }: ListItem) => (
     <ArticleCard
@@ -59,27 +88,37 @@ const NewsFeed = () => {
     />
   )
 
+  if (isError) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ErrorIndicator onTryAgain={handleGetArticles} />
+      </SafeAreaView>
+    )
+  }
+
   return (
     <SafeAreaView style={styles.container}>
       <Search
         data={articles}
-        setData={setSearchArticles}
+        setData={setCurrentViewArticles}
         setSearching={setIsSearching}
       />
       <FlatList
-        data={searchArticles}
+        data={CurrentViewArticles}
         renderItem={renderItem}
         keyExtractor={(item) => item?.title}
         showsVerticalScrollIndicator={false}
         testID={testIds.NewsFeed_List_Wrapper}
-        refreshing={isLoading}
+        refreshing={isRefreshing}
         onRefresh={handleOnRefresh}
         removeClippedSubviews={true}
         initialNumToRender={10}
         onEndReachedThreshold={0.5}
         onEndReached={onLoadMore}
       />
-      <LoadingIndicator disabled={!isLoading || !!articles.length} />
+      <LoadingIndicator
+        disabled={!isLoading || !!articles.length || isRefreshing}
+      />
     </SafeAreaView>
   )
 }

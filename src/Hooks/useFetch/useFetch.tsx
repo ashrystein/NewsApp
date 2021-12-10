@@ -7,11 +7,14 @@ export default function useFetch<T>(endPoint: (page: number) => Promise<T>) {
 
   const get = async (page: number) => {
     setIsLoading(true)
+    setIsError(false)
     try {
       const response: T = await endPoint(page)
       response && setData(response)
     } catch (error) {
+      console.log('error:   ', error)
       setIsError(true)
+      setData(null)
     }
     setIsLoading(false)
   }
