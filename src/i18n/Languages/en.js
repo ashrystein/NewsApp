@@ -5,7 +5,8 @@ const en = {
   News: 'News',
   Settings: 'Settings',
   English: 'English',
-  Bulgarian: 'Bulgarian'
+  Bulgarian: 'Bulgarian',
+  retry: 'Retry'
 }
 
 export default en

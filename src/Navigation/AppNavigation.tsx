@@ -12,11 +12,11 @@ import { useForceUpdate } from '../Hooks'
 import { NewsFeed, ArticleDetails, Settings } from '../Screens'
 import { translate } from '../i18n/helpers'
 import store from '../Redux/Store'
+import { StatusBarModes } from '../Constants'
 
 import routes from './Routes'
 import NavigationScreen from './NavigationScreen'
 import { LightTheme, DarkTheme, Colors } from '../Themes'
-import { StatusBarModes } from '../Constants'
 import linking from './DeepLinking'
 
 const Stack = createNativeStackNavigator()

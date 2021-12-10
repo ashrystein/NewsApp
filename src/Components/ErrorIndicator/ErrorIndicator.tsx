@@ -20,7 +20,7 @@ const ErrorIndicator: React.FC<LoadingIndicatorProps> = ({ onTryAgain }) => {
       testID={testIds.ErrorIndicator_Wrapper}
       onPress={onTryAgain}
     >
-      <LocalizedText i18nKey="English" style={errorStyles.retryText} />
+      <LocalizedText i18nKey="retry" style={errorStyles.retryText} />
       <Icon5 name="redo-alt" size={15} color={Colors.lightGrey} />
     </Pressable>
   )

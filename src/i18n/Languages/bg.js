@@ -5,7 +5,8 @@ const bg = {
   News: 'Новини',
   Settings: 'Настройки',
   English: 'Английски',
-  Bulgarian: 'български'
+  Bulgarian: 'български',
+  retry: 'опитайте отново'
 }
 
 export default bg
