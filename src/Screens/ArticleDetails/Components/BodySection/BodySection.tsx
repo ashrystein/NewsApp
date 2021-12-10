@@ -1,8 +1,9 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
 
 import { useStyleSheet } from '../../../../Hooks'
 import { testIds } from '../../ArticleDetails.testIds'
+import { LocalizedText } from '../../../../Components'
 
 import Styles from './BodySection.styles'
 
@@ -15,16 +16,17 @@ const BodySection: React.FC<BodySectionProps> = ({ title, description }) => {
   const styles = useStyleSheet(Styles)
   return (
     <>
-      <Text style={styles.titleText} testID={testIds.ArticleDetails_TitleText}>
-        {title}
-      </Text>
+      <LocalizedText
+        i18nKey={title}
+        style={styles.titleText}
+        testID={testIds.ArticleDetails_TitleText}
+      />
       <View style={styles.lineView} />
-      <Text
+      <LocalizedText
+        i18nKey={description}
         style={styles.descriptionText}
         testID={testIds.ArticleDetails_DescriptionText}
-      >
-        {description}
-      </Text>
+      />
     </>
   )
 }

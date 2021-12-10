@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, ViewProps } from 'react-native'
+import { Text, TextProps } from 'react-native'
 
 import { translate } from '../../i18n/helpers'
 
@@ -8,7 +8,7 @@ type LocalizedTextProps = {
   children?: React.ReactNode
 }
 
-const LocalizedText: React.FC<LocalizedTextProps & ViewProps> = ({
+const LocalizedText: React.FC<LocalizedTextProps & TextProps> = ({
   i18nKey,
   children,
   ...Props

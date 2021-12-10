@@ -1,11 +1,13 @@
 import React, { memo } from 'react'
-import { Text, View, Pressable } from 'react-native'
+import { View, Pressable } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import { useNavigation } from '@react-navigation/native'
 
 import routes from '../../Navigation/Routes'
 import { ArticleType } from '../../Services/types'
 import { useStyleSheet } from '../../Hooks'
+
+import LocalizedText from '../LocalizedText/LocalizedText'
 
 import { testIds } from './ArticleCard.testIds'
 import Styles from './ArticleCard.styles'
@@ -31,13 +33,12 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
         testID={testIds.ArticleCard_Heading_View}
         onPress={handleOnArticlePress}
       >
-        <Text
+        <LocalizedText
+          i18nKey={article.title}
           style={styles.headingText}
           numberOfLines={3}
           testID={testIds.ArticleCard_Heading_Text}
-        >
-          {article.title}
-        </Text>
+        />
       </Pressable>
       <View style={styles.imageView} testID={testIds.ArticleCard_Image_View}>
         <FastImage
