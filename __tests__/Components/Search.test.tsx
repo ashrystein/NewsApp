@@ -7,7 +7,8 @@ import { article } from '../stubs'
 
 const props = {
   data: [article, article],
-  setData: jest.fn()
+  setData: jest.fn(),
+  setSearching: jest.fn()
 }
 describe('Search Component', () => {
   it('should render component successfully', () => {
