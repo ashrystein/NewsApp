@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import { Text, View, Image, Pressable } from 'react-native'
+import { Text, View, Pressable } from 'react-native'
+import FastImage from 'react-native-fast-image'
 import { useNavigation } from '@react-navigation/native'
 
 import routes from '../../Navigation/Routes'
@@ -39,7 +40,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ article, testID }) => {
         </Text>
       </Pressable>
       <View style={styles.imageView} testID={testIds.ArticleCard_Image_View}>
-        <Image
+        <FastImage
           source={{ uri: article.urlToImage }}
           style={styles.image}
           testID={testIds.ArticleCard_Image}
