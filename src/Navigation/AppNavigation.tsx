@@ -1,5 +1,5 @@
 import React from 'react'
-import { useColorScheme } from 'react-native'
+import { useColorScheme, StatusBar, StatusBarStyle } from 'react-native'
 
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
@@ -16,6 +16,7 @@ import store from '../Redux/Store'
 import routes from './Routes'
 import NavigationScreen from './NavigationScreen'
 import { LightTheme, DarkTheme, Colors } from '../Themes'
+import { StatusBarModes } from '../Constants'
 import linking from './DeepLinking'
 
 const Stack = createNativeStackNavigator()
@@ -86,10 +87,12 @@ const MainTabNavigator = () => (
 const AppNavigation = () => {
   const forceUpdate = useForceUpdate()
   const scheme = useColorScheme()
+  const barStyle = StatusBarModes[scheme!] as StatusBarStyle
 
   return (
     <Provider store={store}>
       <NavigationScreen onChangeLanguage={forceUpdate}>
+        <StatusBar animated={true} barStyle={barStyle} />
         <NavigationContainer
           linking={linking}
           theme={scheme === 'dark' ? DarkTheme : LightTheme}
