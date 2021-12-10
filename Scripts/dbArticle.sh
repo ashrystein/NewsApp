@@ -10,4 +10,4 @@ urlToImage="aHR0cHM6Ly9pbWFnZXMubWFjcnVtb3JzLmNvbS90L3g0b2dPRHFBaEk5a3l2R0czZFlv
 # Operating system parameter ios | android
 OS="$1"
 
-npx uri-scheme open "musala://NewsFeedTab/ArticleDetails/$title/$description/$author/$publishedAt/$urlToImage" --$OS
+npx uri-scheme open "musala://TabNav/NewsFeedTab/ArticleDetails/$title/$description/$author/$publishedAt/$urlToImage" --$OS
