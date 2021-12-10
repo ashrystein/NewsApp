@@ -17,10 +17,15 @@ import { searchByKeyword } from './Search.helpers'
 
 type SearchProps<T> = {
   setData: Dispatch<SetStateAction<T[]>>
+  setSearching: Dispatch<SetStateAction<boolean>>
   data: T[]
 }
 
-const Search = <T extends ArticleType>({ data, setData }: SearchProps<T>) => {
+const Search = <T extends ArticleType>({
+  data,
+  setData,
+  setSearching
+}: SearchProps<T>) => {
   const [keyword, setKeyword] = useState<string>('')
 
   useEffect(() => {
@@ -29,6 +34,7 @@ const Search = <T extends ArticleType>({ data, setData }: SearchProps<T>) => {
 
   const onChange = (text: string) => {
     setKeyword(text)
+    setSearching(!!text)
     const searchData = searchByKeyword(data, text)
     searchData && setData(searchData)
   }

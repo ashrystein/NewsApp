@@ -17,6 +17,7 @@ type ListItem = {
 const NewsFeed = () => {
   const [articles, setArticles] = useState<ArticleType[]>([])
   const [page, setPage] = useState<number>(1)
+  const [isSearching, setIsSearching] = useState<boolean>(false)
   const [searchArticles, setSearchArticles] = useState<ArticleType[]>([])
   const { isLoading, data, get: getArticles } = useFetch<NewsDataType>(getNews)
   const styles = useStyleSheet(Styles)
@@ -29,7 +30,11 @@ const NewsFeed = () => {
   const handleOnRefresh = () => {
     setArticles([])
     setSearchArticles([])
-    handleGetArticles(1)
+    handleGetArticles()
+  }
+
+  const onLoadMore = () => {
+    !isSearching && handleGetArticles(page + 1)
   }
 
   useEffect(() => {
@@ -56,7 +61,11 @@ const NewsFeed = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Search data={articles} setData={setSearchArticles} />
+      <Search
+        data={articles}
+        setData={setSearchArticles}
+        setSearching={setIsSearching}
+      />
       <FlatList
         data={searchArticles}
         renderItem={renderItem}
@@ -67,8 +76,8 @@ const NewsFeed = () => {
         onRefresh={handleOnRefresh}
         removeClippedSubviews={true}
         initialNumToRender={10}
-        onEndReachedThreshold={1}
-        onEndReached={() => handleGetArticles(page + 1)}
+        onEndReachedThreshold={0.5}
+        onEndReached={onLoadMore}
       />
       <LoadingIndicator disabled={!isLoading || !!articles.length} />
     </SafeAreaView>

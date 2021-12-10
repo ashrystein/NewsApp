@@ -13,6 +13,7 @@ const styles = StyleSheet.create<any>({
     borderColor: Colors.lightGrey
   },
   searchInput: {
+    width: '100%',
     paddingVertical: 10,
     borderRadius: 20,
     color: Colors.black,
