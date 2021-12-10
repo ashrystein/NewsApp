@@ -1,18 +1,20 @@
 import React from 'react'
-import { Pressable, SafeAreaView, View } from 'react-native'
+import { Pressable, SafeAreaView, View, Alert } from 'react-native'
 // @ts-ignore
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5'
 import { useSelector, useDispatch } from 'react-redux'
+import { StackActions, useNavigation } from '@react-navigation/native'
 
 import { LocalizedText } from '../../Components'
-import { changeLanguage } from '../../i18n/helpers'
 import { useStyleSheet } from '../../Hooks'
 import { settingsActions } from '../../Redux/Reducers/setting.reducer'
 import { Colors } from '../../Themes'
-
 import Styles from './Settings.styles'
+import { alertMessage } from './Settings.helpers'
+import routes from '../../Navigation/Routes'
 
-const Settings = () => {
+const Settings = ({}) => {
+  const navigation = useNavigation()
   const styles = useStyleSheet(Styles)
   const dispatch = useDispatch()
   const { language } = useSelector(
@@ -21,8 +23,11 @@ const Settings = () => {
   const isEn = language === 'en'
 
   const onChangeLanguage = (lang: string) => {
-    changeLanguage(lang)
-    dispatch(settingsActions.changeLanguage(lang))
+    if (lang === language) return
+    alertMessage('Change_Lang', 'Reload_App_Message', 'Reload', () => {
+      dispatch(settingsActions.changeLanguage(lang))
+      navigation.dispatch(StackActions.replace(routes.Splash))
+    })
   }
 
   return (

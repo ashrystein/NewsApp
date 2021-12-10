@@ -1,8 +1,14 @@
 import React from 'react'
-import { useColorScheme, StatusBar, StatusBarStyle } from 'react-native'
+import {
+  useColorScheme,
+  StatusBar,
+  StatusBarStyle,
+  Button,
+  View
+} from 'react-native'
 
-import { NavigationContainer } from '@react-navigation/native'
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { NavigationContainer, StackActions } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 //@ts-ignore
 import Icon5 from 'react-native-vector-icons/dist/FontAwesome5'
@@ -10,7 +16,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 
 import { useForceUpdate } from '../Hooks'
-import { NewsFeed, ArticleDetails, Settings } from '../Screens'
+import { NewsFeed, ArticleDetails, Settings, Splash } from '../Screens'
 import { translate } from '../i18n/helpers'
 import store, { _persistor } from '../Redux/Store'
 import { StatusBarModes } from '../Constants'
@@ -20,7 +26,7 @@ import NavigationScreen from './NavigationScreen'
 import { LightTheme, DarkTheme, Colors } from '../Themes'
 import linking from './DeepLinking'
 
-const Stack = createNativeStackNavigator()
+const Stack = createStackNavigator()
 const BottomTab = createBottomTabNavigator()
 
 const NewsStackNavigator = () => (
@@ -85,6 +91,17 @@ const MainTabNavigator = () => (
   </BottomTab.Navigator>
 )
 
+const RootNavigator = () => (
+  <Stack.Navigator
+    screenOptions={{
+      headerShown: false
+    }}
+  >
+    <Stack.Screen name={routes.Splash} component={Splash} />
+    <Stack.Screen name={routes.TabNav} component={MainTabNavigator} />
+  </Stack.Navigator>
+)
+
 const AppNavigation = () => {
   const forceUpdate = useForceUpdate()
   const scheme = useColorScheme()
@@ -99,7 +116,7 @@ const AppNavigation = () => {
             linking={linking}
             theme={scheme === 'dark' ? DarkTheme : LightTheme}
           >
-            <MainTabNavigator />
+            <RootNavigator />
           </NavigationContainer>
         </NavigationScreen>
       </PersistGate>

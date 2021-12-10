@@ -6,7 +6,12 @@ const bg = {
   Settings: 'Настройки',
   English: 'Английски',
   Bulgarian: 'български',
-  retry: 'опитайте отново'
+  retry: 'опитайте отново',
+  Ok: 'Добре',
+  Cancel: 'Отмяна',
+  Reload: 'Презареди',
+  Change_Lang: 'Смени езика',
+  Reload_App_Message: 'Това действие ще презареди приложението'
 }
 
 export default bg

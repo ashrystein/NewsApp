@@ -5,6 +5,7 @@ type routes = {
   Settings: string
   NewsFeedTab: string
   SettingsTab: string
+  Splash: string
 }
 
 const routes: routes = {
@@ -13,7 +14,8 @@ const routes: routes = {
   ArticleDetails: 'ArticleDetails',
   Settings: 'Settings',
   NewsFeedTab: 'NewsFeedTab',
-  SettingsTab: 'SettingsTab'
+  SettingsTab: 'SettingsTab',
+  Splash: 'Splash'
 }
 
 export default routes
