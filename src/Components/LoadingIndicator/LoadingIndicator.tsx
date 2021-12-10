@@ -18,12 +18,7 @@ const LoadingIndicator: React.FC<LoadingIndicatorProps> = ({ disabled }) => {
       style={LoadingIndicatorStyles.container}
       testID={testIds.LoadingIndicator_Wrapper}
     >
-      <View
-        style={LoadingIndicatorStyles.indecator}
-        testID={testIds.LoadingIndicator_Indecator}
-      >
-        <ActivityIndicator size="large" testID="LoadingIndicator_icon" />
-      </View>
+      <ActivityIndicator size="large" testID="LoadingIndicator_icon" />
     </View>
   )
 }

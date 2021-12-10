@@ -7,12 +7,15 @@ import { testIds } from '../../src/Components/LoadingIndicator/LoadingIndicator.
 const props = {
   disabled: false
 }
-describe('Search Component', () => {
-  it('should render component successfully', () => {
+describe('Loading Component', () => {
+  it('should show component successfully', () => {
     const { getByTestId } = render(<LoadingIndicator {...props} />)
     expect(getByTestId(testIds.LoadingIndicator_Wrapper)).toBeTruthy()
-    expect(getByTestId(testIds.LoadingIndicator_Indecator)).toBeTruthy()
   })
 
-  it('should call setData method', async () => {})
+  it('should not show component successfully', () => {
+    props.disabled = true
+    const { queryByTestId } = render(<LoadingIndicator {...props} />)
+    expect(queryByTestId(testIds.LoadingIndicator_Wrapper)).toBeNull()
+  })
 })
