@@ -35,12 +35,21 @@ const NewsFeed = () => {
   } = useFetch<NewsDataType>(getNews)
   const styles = useStyleSheet(Styles)
 
+  /**
+   *
+   * Load next page of data if no previous request running
+   * Default value for nextPage with the initial page
+   */
   const handleGetArticles = async (nextPage: number = 1) => {
     if (isLoading) return
     await getArticles(nextPage)
     setPagination(nextPage)
   }
 
+  /**
+   *
+   * Call the data loader with initila page
+   */
   const handleOnRefresh = async () => {
     setIsRefreshing(true)
     setIsSearching(false)
@@ -48,10 +57,20 @@ const NewsFeed = () => {
     setIsRefreshing(false)
   }
 
+  /**
+   *
+   * Perform loading more data when no searching
+   */
   const onLoadMore = async () => {
     !isSearching && (await handleGetArticles(pageNumber + 1))
   }
 
+  /**
+   *
+   * Handle new incoming data
+   * refreshing: rest the data to first page
+   * load more: add the new data to incoming
+   */
   const handleNewDataLoaded = () => {
     if (data) {
       const currentArticles = isRefreshing ? [] : articles
@@ -64,6 +83,10 @@ const NewsFeed = () => {
     }
   }
 
+  /**
+   *
+   * Reset data list when error happen
+   */
   const handleOnError = () => {
     setArticles([])
     setCurrentViewArticles([])

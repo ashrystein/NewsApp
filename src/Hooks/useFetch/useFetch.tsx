@@ -12,7 +12,8 @@ export default function useFetch<T>(endPoint: (page: number) => Promise<T>) {
       const response: T = await endPoint(page)
       response && setData(response)
     } catch (error) {
-      console.log('error:   ', error)
+      // Some unExpected errors happen beacuse of newsapi.org
+      // Ex: 426 Upgrade Required etc.
       setIsError(true)
       setData(null)
     }
