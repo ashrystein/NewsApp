@@ -1,5 +1,3 @@
-# musalaTest
-
 # Installation
 - Clone the repo.
 - Open the terminal and navigate to the project root dir.
